@@ -1,4 +1,4 @@
-import pytest
+from time import sleep
 
 
 class Sessao:
@@ -21,6 +21,9 @@ class Sessao:
 
 
 class Conexao:
+    def __init__(self):
+        sleep(1)
+
     def gerar_sessao(self):
         return Sessao()
 
@@ -32,23 +35,6 @@ class Usuario:
     def __init__(self, nome):
         self.nome = nome
         self.id = None
-
-
-@pytest.fixture
-def conexao():
-    # Setup
-    conexao_obj = Conexao()
-    yield Conexao()
-    # Tear Down
-    conexao_obj.fechar()
-
-
-@pytest.fixture
-def sessao(conexao):
-    sessao_obj = conexao.gerar_sessao()
-    yield sessao_obj
-    sessao_obj.rollback()
-    sessao_obj.fechar()
 
 
 def test_salvar_usuario(sessao):
