@@ -32,19 +32,23 @@ class Conexao:
 
 
 class Usuario:
-    def __init__(self, nome):
+    def __init__(self, nome, email):
         self.nome = nome
+        self.email = email
         self.id = None
 
 
 def test_salvar_usuario(sessao):
-    usuario = Usuario(nome='Mateus')
+    usuario = Usuario(nome='Mateus', email='mateuslourenco55@outlook.com')
     sessao.salvar(usuario)
     assert isinstance(usuario.id, int)
 
 
 def test_listar_usuarios(sessao):
-    usuarios = [Usuario(nome='Mateus'), Usuario(nome='Mateus')]
+    usuarios = [
+        Usuario(nome='Mateus', email='mateuslourenco55@outlook.com'),
+        Usuario(nome='Rafael', email='mateuslourenco55@outlook.com')
+    ]
     for usuario in usuarios:
         sessao.salvar(usuario)
     assert usuarios == sessao.listar()
