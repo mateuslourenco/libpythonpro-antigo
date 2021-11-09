@@ -12,6 +12,9 @@ iniconfig
 colorama
 pyparsing==2.0.2
 
+# Mock
+pytest-mock==3.6.1
+
 # Covarege
 coverage==6.1.1
 pytest-cov==3.0.0
